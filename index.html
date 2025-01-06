@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratique Inglês</title>
+  <link href="https://fonts.cdnfonts.com/css/ds-digital" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f8f9fa;
+      color: #212121;
+    }
+    
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    th {
+      background-color: #f1f3f4;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .correct {
+      color: green;
+      font-weight: bold;
+      animation: correct-glow 1s ease-in-out;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+      animation: incorrect-shake 0.3s;
+    }
+    .fade-out {
+      animation: fadeOut 0.5s forwards;
+    }
+    .examples {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 4px;
+      box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+    }
+    .examples p {
+      margin: 10px 0;
+    }
+    .examples .definition {
+      font-weight: bold;
+      color: #333;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .timer {
+      font-size: 30px;
+      font-weight: bold;
+      font-family: 'DS-Digital', monospace;
+      color: #555555;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #4285f4;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .accuracy {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    footer {
+      background-color: #f1f3f4;
+      color: #212121;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .congratulations {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #4caf50;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeInScale 0.5s ease-out;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    .advertisement {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ff9800;
+      color: white;
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+	
+	
+
+
+ header {
+      background-color: #4285f4;
+      color: white;
+      padding: 8px;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .user-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      color: #4285f4;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .user-btn:hover {
+      background-color: #f1f3f4;
+    }
+    .user-btn img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #212121;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .dropdown a:hover {
+      background-color: #f1f3f4;
+    }
+
+	
+  </style>
+</head>
+<body>
+  <header>
+    <span>1000 palavras em Inglês mais usadas no dia a dia</span>
+    <button id="user-preferences-btn" class="user-btn" title="Preferências do Usuário"></button>
+    <div id="user-dropdown" class="dropdown">
+      <a href="#profile">Perfil</a>
+      <a href="#settings">Configurações</a>
+      <a href="#logout">Sair</a>
+    </div>
+  </header>
+  <main>
+    <div class="controls">
+      <div class="timer" id="timer">00:00</div>
+      <div class="accuracy"><span id="accuracy">Acertos: 0/20 (0%)</span></div>
+      <button id="reset-timer" disabled>Reiniciar</button>
+    </div>
+    <table>
+      <thead id="table-head">
+        <tr>
+          <th>Inglês</th>
+          <th>Português</th>
+        </tr>
+      </thead>
+      <tbody id="word-list">
+        <!-- As palavras serão carregadas aqui -->
+      </tbody>
+    </table>
+  </main>
+  <div id="congratulations" class="congratulations">
+    Parabéns! Você concluiu todas as palavras! 🎉
+  </div>
+  <div id="advertisement" class="advertisement">
+    Lançamento exclusivo no dia 31 de janeiro de 2025!!!<br/>
+    Entre já na lista de espera do aplicativo que vai turbinar seu aprendizado prático de Inglês.<br/>
+    <a href="https://wa.me/5545999380856" target="_blank">Envie um "eu quero" para nosso Whatsapp</a>
+  </div>
+  <script src="palavras.js"></script>
+
+  <script>
+   
+ const userPreferencesButton = document.getElementById("user-preferences-btn");
+    const dropdownMenu = document.getElementById("user-dropdown");
+
+    // Simula dados do usuário (substitua pela integração real)
+    const user = {
+      name: "João Silva",
+      photo: null,
+    };
+
+    // Configura o botão
+    function setupUserButton(user) {
+      if (user.photo) {
+        userPreferencesButton.style.backgroundImage = `url(${user.photo})`;
+        userPreferencesButton.textContent = "";
+      } else {
+        const initial = user.name ? user.name.charAt(0).toUpperCase() : "?";
+        userPreferencesButton.textContent = initial;
+      }
+    }
+
+    // Mostra ou oculta o menu drop-down
+    function toggleDropdown() {
+      const isVisible = dropdownMenu.style.display === "block";
+      dropdownMenu.style.display = isVisible ? "none" : "block";
+    }
+
+    // Esconde o menu ao clicar fora dele
+    function hideDropdown(event) {
+      if (!userPreferencesButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.style.display = "none";
+      }
+    }
+
+    userPreferencesButton.addEventListener("click", toggleDropdown);
+    document.addEventListener("click", hideDropdown);
+
+    setupUserButton(user);
+ 
+    
+
+    const tableBody = document.getElementById("word-list");
+    const timerElement = document.getElementById("timer");
+    const accuracyElement = document.getElementById("accuracy");
+    const resetButton = document.getElementById("reset-timer");
+
+    let startTime = null;
+    let timerInterval = null;
+    let correctCount = 0;
+
+    function updateAccuracy() {
+      const percentage = words.length > 0 ? ((correctCount / words.length) * 100).toFixed(2) : 0;
+      accuracyElement.textContent = `Acertos: ${correctCount}/${words.length} (${percentage}%)`;
+    }
+
+    function startTimer() {
+      if (!startTime) {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+        resetButton.disabled = false;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+      startTime = null;
+      clearInterval(timerInterval);
+      timerElement.textContent = "00:00";
+      resetButton.disabled = true;
+      correctCount = 0;
+      updateAccuracy();
+      loadTable();
+    }
+
+    function updateTimer() {
+ 		if (!startTime) return; // Garante que só atualiza o timer se houver um `startTime`
+
+		  const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+		  const minutes = Math.floor(elapsedTime / 60).toString().padStart(2, '0');
+		  const seconds = (elapsedTime % 60).toString().padStart(2, '0');
+		  timerElement.textContent = `${minutes}:${seconds}`;
+
+		  // Apenas para depuração visual
+		  if (timerElement.textContent === "00:00") {
+			resetButton.disabled = true; // Desabilita o botão se o timer for 00:00
+		  }
+    }
+
+    resetButton.addEventListener("click", resetTimer);
+	
+	window.onload = function () {
+  resetTimer(); // Garante que o botão esteja desabilitado no carregamento
+  loadTable();
+};
+
+    function loadTable() {
+      tableBody.innerHTML = "";
+
+      words.forEach((word, index) => {
+        const row = document.createElement("tr");
+        row.setAttribute("id", `row-${index}`);
+        row.innerHTML = `
+          <td><span class="word" data-index="${index}">${word.english}</span></td>
+          <td><input type="text" id="input-${index}" /></td>
+        `;
+        tableBody.appendChild(row);
+
+        const inputField = document.getElementById(`input-${index}`);
+        inputField.disabled = index !== 0; // Desabilita todos os campos, exceto o primeiro
+        inputField.addEventListener("input", function () {
+          startTimer();
+          checkAnswer(inputField, word, index);
+        });
+		
+		row.querySelector(".word").addEventListener("click", function () {
+			toggleExamples(index, row, word.examples);
+		});
+		
+      });
+
+      // Foco inicial no primeiro campo habilitado
+      const firstInput = document.querySelector("input:not([disabled])");
+      if (firstInput) firstInput.focus();
+    }
+
+    function checkAnswer(inputField, word, index) {
+      const inputValue = inputField.value.trim().toLowerCase();
+      if (word.portuguese.includes(inputValue)) {
+        inputField.classList.add("correct");
+        inputField.classList.remove("incorrect");
+
+        // Remove a linha da palavra
+        const row = document.getElementById(`row-${index}`);
+        row.classList.add("fade-out");
+        setTimeout(() => {
+          row.remove();
+
+          // Habilita o próximo campo
+          const nextInput = document.getElementById(`input-${index + 1}`);
+          if (nextInput) {
+            nextInput.disabled = false;
+            nextInput.focus();
+          }
+        }, 500);
+
+        correctCount++;
+        updateAccuracy();
+
+        if (correctCount === words.length) {
+          stopTimer();
+          document.getElementById("table-head").style.display = "none"; // Remove o cabeçalho
+
+          // Mostra a mensagem de parabéns
+          const congratulations = document.getElementById("congratulations");
+          congratulations.style.display = "block";
+
+          // Esconde a mensagem automaticamente após alguns segundos
+          setTimeout(() => {
+            congratulations.style.display = "none";
+          }, 5000);
+        }
+      } else {
+        inputField.classList.add("incorrect");
+      }
+    }
+	
+	function toggleExamples(index, row, examples) {
+    const existingExamples = document.getElementById(`examples-${index}`);
+    if (existingExamples) {
+        existingExamples.remove();
+    } else {
+        const exampleRow = document.createElement("tr");
+        exampleRow.setAttribute("id", `examples-${index}`);
+        exampleRow.innerHTML = `<td colspan="2" class="examples">
+      ${examples.map(ex => `
+        <p class="definition">${ex.definition}</p>
+        <p>Exemplo: ${ex.en} → ${ex.pt}</p>
+      `).join("")}
+    </td>`;
+        row.insertAdjacentElement("afterend", exampleRow);
+    }
+	}
+	
+	
+
+    window.onload = function () {
+      loadTable();
+    };
+  </script>
+</body>
+</html>
