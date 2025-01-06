@@ -375,7 +375,7 @@
 
         const inputField = document.getElementById(`input-${index}`);
         inputField.disabled = index !== 0; // Desabilita todos os campos, exceto o primeiro
-        inputField.addEventListener("input", function () {
+        inputField.addEventListener("change", function () {
           startTimer();
           checkAnswer(inputField, word, index);
         });
