@@ -312,28 +312,28 @@ const words = [
     ]
   },
   {
-    "english": "State",
-    "portuguese": ["estado", "condição", "situação", "governo"],
+    "english": "Place",
+    "portuguese": ["lugar", "local", "situação", "posição"],
     "examples": [
       {
-        "definition": "Estado – Unidade política ou administrativa.",
-        "en": "Texas is a state in the USA.",
-        "pt": "O Texas é um estado nos EUA."
+        "definition": "Lugar – Localização ou área.",
+        "en": "This is a beautiful place.",
+        "pt": "Este é um lugar bonito."
       },
       {
-        "definition": "Condição – Situação atual.",
-        "en": "The car is in good state.",
-        "pt": "O carro está em bom estado."
+        "definition": "Local – Ponto específico.",
+        "en": "He is at the place of the accident.",
+        "pt": "Ele está no local do acidente."
       },
       {
-        "definition": "Situação – Circunstância momentânea.",
-        "en": "He is in a state of shock.",
-        "pt": "Ele está em estado de choque."
+        "definition": "Situação – Condição ou estado.",
+        "en": "She is in a difficult place right now.",
+        "pt": "Ela está em uma situação difícil agora."
       },
       {
-        "definition": "Governo – Autoridade pública.",
-        "en": "The state provides support to families.",
-        "pt": "O governo oferece apoio às famílias."
+        "definition": "Posição – Ordem ou classificação.",
+        "en": "He finished in first place.",
+        "pt": "Ele terminou em primeiro lugar."
       }
     ]
   },
